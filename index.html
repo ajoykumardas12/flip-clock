@@ -11,17 +11,68 @@
 </head>
 <body>
     <div class="clock"></div>
+    <div class="float" id="fc"><i class="bi bi-fullscreen" id="fullscreenIcon"></i></div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="flipclock.js"></script>
     <script type="text/javascript">
-        var clock;
-        
+        let clock;
+        let flscrnIcon = document.getElementById("fullscreenIcon");
+
         $(document).ready(function() {
             clock = $('.clock').FlipClock({
                 clockFace: 'TwentyFourHourClock'
             });
         });
+
+        //fullscreen
+        var fullscrn = document.getElementById("fc");
+
+        fullscrn.onclick = toggle;
+
+        function toggle(){
+            toggleFullScreen();
+            toggleIcon();
+        }
+
+        function toggleFullScreen() {
+          if (!document.fullscreenElement &&    // alternative standard method
+              !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement ) {  // current working methods
+            if (document.documentElement.requestFullscreen) {
+              document.documentElement.requestFullscreen();
+            } else if (document.documentElement.msRequestFullscreen) {
+              document.documentElement.msRequestFullscreen();
+            } else if (document.documentElement.mozRequestFullScreen) {
+              document.documentElement.mozRequestFullScreen();
+            } else if (document.documentElement.webkitRequestFullscreen) {
+              document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+            }
+          } else {
+            if (document.exitFullscreen) {
+              document.exitFullscreen();
+            } else if (document.msExitFullscreen) {
+              document.msExitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+              document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) {
+              document.webkitExitFullscreen();
+            }
+          }
+        }
+
+        function toggleIcon() {
+            console.log("called");
+            let notflscrn = flscrnIcon.classList.contains("bi-fullscreen");
+            console.log(notflscrn);
+            if(notflscrn === true){
+                flscrnIcon.classList.remove("bi-fullscreen")
+                flscrnIcon.classList.add("bi-fullscreen-exit");
+            }else{
+                flscrnIcon.classList.remove("bi-fullscreen-exit")
+                flscrnIcon.classList.add("bi-fullscreen");
+            }
+        }
+
     </script>
 </body>
 </html>
