@@ -6,35 +6,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flip-Clock</title>
 
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
     <link rel="stylesheet" href="flipclock.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="clock"></div>
-    <div class="float" id="fc"><i class="bi bi-fullscreen" id="fullscreenIcon"></i></div>
+    <div class="float fullScreen" id="fc"><i class="bi bi-fullscreen" id="fullscreenIcon"></i></div>
+    <div class="timeF float" id="timeFormat">
+        <span>24 Hour</span>
+        <span>
+            <div class="button" id="timeFButton">
+              <input type="checkbox" class="checkbox">
+              <div class="knobs">
+                <span></span>
+              </div>
+              <div class="layer"></div>
+            </div>
+        </span>
+        <span>12 Hour</span></div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="flipclock.js"></script>
     <script type="text/javascript">
         let clock;
         let flscrnIcon = document.getElementById("fullscreenIcon");
-        let face = 'TwentyFourHourClock'
+        var face = 'TwentyFourHourClock'
+
+        document.addEventListener('DOMContentLoaded', function () {
+            let checkbox = document.querySelector('input[type="checkbox"]');
+
+            checkbox.addEventListener('click', function () {
+                if (checkbox.checked) {
+                    // if checked, 12hr
+                    console.log('Checked');
+                    return face = 'TwelveHourClock';
+                    //reloadClock();
+                } else {
+                    // if not checked, 24hr
+                    console.log('Not checked');
+                    return face = 'TwentyFourHourClock';
+                    //reloadClock();
+                }
+            });
+        });
 
         //load clock
         $(document).ready(function() {
-                clock = $('.clock').FlipClock({
-                    clockFace: face
-                });
+            clock = $('.clock').FlipClock({
+                clockFace: face
             });
+            setInterval(reloadClock, 1000);
+        });
         //reload clock every 5sec
-        setInterval(function(){
-            $(document).ready(function() {
-                clock = $('.clock').FlipClock({
+        // setInterval(function(){
+        //     $(document).ready(function() {
+        //         clock = $('.clock').FlipClock({
+        //             clockFace: face
+        //         });
+        //     });
+        // },5000);
+        // function loadClock(){
+        //     $(document).ready(function() {
+        //         clock = $('.clock').FlipClock({
+        //             clockFace: face
+        //         });
+        //     });
+        // }
+        function reloadClock(){
+            console.log("called");
+            clock = $('.clock').FlipClock({
                     clockFace: face
-                });
             });
-        },5000);
-        
+        }
 
         //toggle fullscreen
         var fullscrn = document.getElementById("fc");
@@ -84,6 +129,7 @@
             }
         }
 
+        
     </script>
 </body>
 </html>
