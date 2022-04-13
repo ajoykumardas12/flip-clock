@@ -18,14 +18,25 @@
     <script type="text/javascript">
         let clock;
         let flscrnIcon = document.getElementById("fullscreenIcon");
+        let face = 'TwentyFourHourClock'
 
+        //load clock
         $(document).ready(function() {
-            clock = $('.clock').FlipClock({
-                clockFace: 'TwentyFourHourClock'
+                clock = $('.clock').FlipClock({
+                    clockFace: face
+                });
             });
-        });
+        //reload clock every 5sec
+        setInterval(function(){
+            $(document).ready(function() {
+                clock = $('.clock').FlipClock({
+                    clockFace: face
+                });
+            });
+        },5000);
+        
 
-        //fullscreen
+        //toggle fullscreen
         var fullscrn = document.getElementById("fc");
 
         fullscrn.onclick = toggle;
