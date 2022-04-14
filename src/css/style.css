@@ -13,10 +13,16 @@ body {
   background-color: black;
 }
 
+.float {
+  position: fixed;
+}
+
+/* clock */
 .clock {
   width: auto;
 }
 
+/* timeformat */
 .timeF {
   top: 40px;
   right: 40px;
@@ -119,10 +125,7 @@ body {
   background-color: #fcebeb;
 }
 
-.float {
-  position: fixed;
-}
-
+/* fullscreen button */
 .fullScreen {
   font-size: 1.5rem;
   bottom: 40px;
@@ -132,8 +135,11 @@ body {
   cursor: pointer;
 }
 
+/* hidden when no mousemove */
 .hidden{
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s 2s, opacity 2s linear;
 }
+
+
