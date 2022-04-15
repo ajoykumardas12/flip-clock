@@ -8,20 +8,30 @@ document.addEventListener("DOMContentLoaded", function () {
   checkbox.addEventListener("click", function () {
     if (checkbox.checked) {
       // if checked, 12hr
+      $(document).ready(function () {
+        clock = $(".clock").FlipClock({
+          clockFace: format,
+        });
+      });
       return (format = "TwelveHourClock");
     } else {
+      $(document).ready(function () {
+        clock = $(".clock").FlipClock({
+          clockFace: format,
+        });
+      });
       // if not checked, 24hr
       return (format = "TwentyFourHourClock");
     }
   });
 });
 
-//load clock
+// load clock
 $(document).ready(function () {
   clock = $(".clock").FlipClock({
     clockFace: format,
   });
-  setInterval(reloadClock, 1000);
+  setInterval(reloadClock, 60000);
 });
 
 //reload clock function
@@ -31,7 +41,7 @@ function reloadClock() {
   });
 }
 
-//toggle fullscreen
+// toggle fullscreen
 var fullscrn = document.getElementById("fc");
 
 fullscrn.onclick = toggle;
