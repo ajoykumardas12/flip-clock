@@ -88,7 +88,7 @@ function toggleIcon() {
   if (notflscrn === true) {
     flscrnIcon.classList.remove("bi-fullscreen");
     flscrnIcon.classList.add("bi-fullscreen-exit");
-  } else {
+  } else{
     flscrnIcon.classList.remove("bi-fullscreen-exit");
     flscrnIcon.classList.add("bi-fullscreen");
   }
@@ -98,6 +98,7 @@ function toggleIcon() {
 let justHidden = false;
 
 $(document).ready(function () {
+  setTimeout("hide();", 3000);
   let j;
   $(document).mousemove(function () {
     if (!justHidden) {
@@ -112,3 +113,23 @@ $(document).ready(function () {
 function hide() {
   $(".btn").addClass("hidden");
 }
+
+// check if fullscreen and change icon accordingly ***(fullScreen works perfectly only on firefox)
+// function checkFullScrren() {
+//   if (
+//     window.fullScreen ||
+//     (window.innerWidth == screen.width &&
+//       window.innerHeight == screen.height)
+//   ) {
+//     console.log("fullscreen");
+//     flscrnIcon.classList.remove("bi-fullscreen");
+//     flscrnIcon.classList.add("bi-fullscreen-exit");
+//   } else {
+//     console.log("not fullscreen");
+//     flscrnIcon.classList.remove("bi-fullscreen-exit");
+//     flscrnIcon.classList.add("bi-fullscreen");
+//   }
+// }
+
+//change fullscreen icon if keys are used to toggle fullscreen
+// setInterval(checkFullScrren, 3000);
